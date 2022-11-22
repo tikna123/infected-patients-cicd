@@ -1,15 +1,20 @@
 
 from collections import deque
 import sys
+# git action added
 def parseInput(input):
     inputLines = input.strip().split("\n")
     matrix = []
-    for row in inputLines[1:]:
+    m= int(inputLines[0].split(" ")[0])
+    n= int(inputLines[0].split(" ")[1])
+    for i in range(m):
         rowToWrite = []
+        row = inputLines[i+1]
         for val in row.split(" "):
             rowToWrite.append(int(val))
         matrix.append(rowToWrite)
-    return matrix
+    output = int(inputLines[len(inputLines)-1])
+    return matrix,output
 
 def isValid(i, j, M, N):
     return (0 <= i < M) and (0 <= j < N)
@@ -26,7 +31,9 @@ def checkUninfected(matrix):
     return False
 
 def getMinTime(input):
-    wardMatrix = parseInput(input)
+    wardMatrix,output = parseInput(input)
+    #print(wardMatrix)
+    #print(output)
     # handle base case
     if not wardMatrix or not len(wardMatrix):
         return 0
@@ -83,9 +90,9 @@ def getMinTime(input):
     # return number of steps or
     # -1 if the matrix has an unreachable uninfected patients
     if checkUninfected(wardMatrix):
-        return -1 
+        return -1,output
     else: 
-        return steps - 1
+        return steps - 1,output
 
 
 
@@ -93,8 +100,8 @@ if __name__ == '__main__':
     unitTestFile = sys.argv[1]
     fr = open(unitTestFile)
     input = fr.read()
-    print(getMinTime(input))
-
+    output_tup = getMinTime(input)
+    assert output_tup[0]==output_tup[1]
 
 
 
