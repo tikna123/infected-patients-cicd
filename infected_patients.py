@@ -96,12 +96,13 @@ def getMinTime(input):
 
 
 
+
 if __name__ == '__main__':
     unitTestFile = sys.argv[1]
     fr = open(unitTestFile)
     input = fr.read()
     output_tup = getMinTime(input)
-    assert 1==output_tup[1]
+    assert output_tup[0]==output_tup[1]
 
 
 
