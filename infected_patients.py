@@ -101,7 +101,7 @@ if __name__ == '__main__':
     fr = open(unitTestFile)
     input = fr.read()
     output_tup = getMinTime(input)
-    assert output_tup[0]==output_tup[1]
+    assert 1==output_tup[1]
 
 
 
